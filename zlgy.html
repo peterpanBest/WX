@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>重力感应</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style>
+			body {
+				background-color: #efeff4;
+			}
+			.title{
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			 .oa-contact-cell.mui-table .mui-table-cell {
+				padding: 11px 0;
+				vertical-align: middle;
+			}
+			
+			.oa-contact-cell {
+				position: relative;
+				margin: -11px 0;
+			}
+	
+			.oa-contact-avatar {
+				width: 75px;
+			}
+			.oa-contact-avatar img {
+				border-radius: 50%;
+			}
+			.oa-contact-content {
+				width: 100%;
+			}
+			.oa-contact-name {
+				margin-right: 20px;
+			}
+			.oa-contact-name, oa-contact-position {
+				float: left;
+			}
+			.mui-content{
+				width: 100vw;
+				height: 100vh;
+				display: table-cell;
+				text-align: center;
+				vertical-align: middle;
+				background: url(img/yaoyiyao01.png) no-repeat;
+				background-size: 100%;
+			}
+			.mui-content img{
+				width: 100%;
+				height: 100%;
+			}
+			#ball{
+				transition: all .3s; 				
+				display: block;
+				width: 50px;
+				height: 50px;
+				margin: auto;
+				background: red;
+				border-radius: 100%;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href=""></a>
+		    <h1 class="mui-title">重力感应</h1>
+		</header>
+		<div class="mui-content">
+			<div class="title">
+				<div id="ball"></div>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script>
+		
+		
+		
+		document.addEventListener("plusready",plusready,true);
+		var ball = mui("#ball")[0];
+		function plusready(){
+			setInterval(function(){
+				
+			wid = plus.accelerometer.watchAcceleration( function ( a ) {
+					var x = a.xAxis.toFixed(1);
+					var y = a.yAxis.toFixed(1);
+					
+					//console.log("当前X轴的加速度是"+x)
+					//console.log("当前X轴的加速度是"+y)
+					ball.style.position = "relative";
+					ball.style.left = x*20+"px";
+					ball.style.top = y*20+"px";
+				})
+			},200)			
+//			setInterval(function(){
+//				console.log(1)
+//			},1000)
+		}
+		plusready();
+	</script>
+</html>
